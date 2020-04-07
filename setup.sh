@@ -29,7 +29,7 @@ sudo systemctl enable kiosk.service
 
 
 #Install and run POS
-sudo apt install docker.io docker-compose
+sudo apt install docker.io docker-compose -y
 sudo docker-compose up -d
 
 
