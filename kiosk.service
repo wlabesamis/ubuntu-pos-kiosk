@@ -1,6 +1,6 @@
 [Unit]
 Description=Kiosk Launcher
-After=systemd-user-sessions.service
+After=docker.service
 
 [Service]
 User=kiosk
