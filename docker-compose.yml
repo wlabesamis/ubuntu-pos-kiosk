@@ -1,0 +1,64 @@
+version: '2'
+
+volumes:
+    uploads:
+        driver: local
+
+networks:
+    ospos_net:
+
+services:
+    sqlscript:
+        image: registry.gitlab.com/opensourcepos/sqlscript:3.3.0-1.0
+        container_name: sqlscript
+
+    php:
+        image: registry.gitlab.com/opensourcepos/phpospos:3.3.0
+        container_name: php
+        restart: always
+        depends_on:
+            - mysql
+        ports:
+            - "80:80"
+        networks:
+            - ospos_net
+        volumes:
+            - uploads:/app/public/uploads
+        environment:
+            - FORCE_HTTPS=false
+            - PHP_TIMEZONE=UTC
+            - MYSQL_USERNAME=admin
+            - MYSQL_PASSWORD=pointofsale
+            - MYSQL_DB_NAME=ospos
+            - MYSQL_HOST_NAME=mysql
+
+    mysql:
+        image: registry.gitlab.com/opensourcepos/mysql:10.3.9
+        container_name: mysql
+        restart: always
+        ports:
+            - "3306:3306"
+        networks:
+            - ospos_net
+        volumes_from:
+            - sqlscript
+        environment:
+            - MYSQL_ROOT_PASSWORD=pointofsale
+            - MYSQL_DATABASE=ospos
+            - MYSQL_USER=admin
+            - MYSQL_PASSWORD=pointofsale
+
+    phpmyadmin:
+        image: registry.gitlab.com/opensourcepos/phpmyadmin:5.0.2
+        container_name: phpmyadmin
+        restart: always
+        depends_on:
+            - mysql
+        ports:
+            - "8000:80"
+        networks:
+            - ospos_net
+        environment:
+            - MYSQL_USERNAME=admin
+            - MYSQL_ROOT_PASSWORD=pointofsale
+            - PMA_HOST=mysql
