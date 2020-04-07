@@ -73,7 +73,6 @@ the command below if you are using LAN.
     ````
     sudo cp kiosk.service /etc/systemd/system/
     sudo systemctl enable kiosk.service
-    sudo systemctl start kiosk.service
     ````
 * Install and run POS
     ````
