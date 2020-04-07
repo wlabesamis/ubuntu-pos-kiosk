@@ -9,3 +9,6 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+
+[Timer]
+OnBootSec=2 m
