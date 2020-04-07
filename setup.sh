@@ -32,6 +32,9 @@ sudo systemctl enable kiosk.service
 sudo apt install docker.io docker-compose -y
 sudo docker-compose up -d
 
+#Update Grub
+sudo cp grub /etc/default/grub
+sudo update-grub
 
 #Start Kiosk Service
-#sudo systemctl start kiosk.service
+sudo systemctl start kiosk.service
