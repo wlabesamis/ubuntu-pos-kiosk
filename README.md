@@ -97,5 +97,6 @@ the command below if you are using LAN.
 
 ## Acknowledgments
 
-* Thank you to THEPCSPY
+* Thank you to THEPCSPY and Open Source POS
 * **THEPCSPY** - (https://thepcspy.com/read/building-a-kiosk-computer-ubuntu-1404-chrome/)
+* **OSPOS** - (https://github.com/opensourcepos/opensourcepos)
