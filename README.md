@@ -74,10 +74,12 @@ the command below if you are using LAN.
     sudo cp kiosk.service /etc/systemd/system/
     sudo systemctl enable kiosk.service
     ````
+  
 * Install and run POS
     ````
     sudo apt install docker.io docker-compose -y
     sudo docker-compose up -d
+    sudo systemctl enable docker.service
     ````
 
 * Start kiosk service, run the command below
